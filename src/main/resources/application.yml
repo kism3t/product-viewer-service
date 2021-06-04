@@ -10,14 +10,16 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
 
-  h2:
     console:
       enabled: true
       path: /h2
       settings:
         web-allow-others: true
 
-  data:
-    jpa:
-      repositories:
-        bootstrap-mode=default: default
+    hibernate:
+      # https://www.baeldung.com/spring-boot-data-sql-and-schema-sql
+      ddl-auto: create-drop
+
+  sql:
+    init:
+      platform: h2

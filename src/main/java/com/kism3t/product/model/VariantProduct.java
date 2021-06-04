@@ -1,4 +1,4 @@
-package com.kism3t.productviewer.model;
+package com.kism3t.product.model;
 
 import java.util.List;
 

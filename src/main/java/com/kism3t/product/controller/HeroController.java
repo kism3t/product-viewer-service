@@ -1,7 +1,7 @@
-package com.kism3t.productviewer.controller;
+package com.kism3t.product.controller;
 
-import com.kism3t.productviewer.model.Hero;
-import com.kism3t.productviewer.service.HeroService;
+import com.kism3t.product.model.Hero;
+import com.kism3t.product.service.HeroService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;

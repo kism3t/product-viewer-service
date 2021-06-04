@@ -1,4 +1,4 @@
-package com.kism3t.productviewer;
+package com.kism3t.product;
 
 import java.util.Arrays;
 

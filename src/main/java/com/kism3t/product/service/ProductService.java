@@ -1,4 +1,4 @@
-package com.kism3t.productviewer.service;
+package com.kism3t.product.service;
 
 import org.springframework.stereotype.Service;
 

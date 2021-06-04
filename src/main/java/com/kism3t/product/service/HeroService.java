@@ -1,6 +1,6 @@
-package com.kism3t.productviewer.service;
+package com.kism3t.product.service;
 
-import com.kism3t.productviewer.model.Hero;
+import com.kism3t.product.model.Hero;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
