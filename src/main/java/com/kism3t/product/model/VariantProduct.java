@@ -1,15 +1,35 @@
 package com.kism3t.product.model;
 
+import lombok.Data;
+import lombok.Getter;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
-public class VariantProduct extends Product {
+@Entity
+@Data
+@Getter
+public class VariantProduct implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private long id;
+
+
     private String onlineId;
     private String name;
     private String erpId;
-    private List<String> images;
+
+    @ElementCollection
     private List<String> downloads;
+    @ElementCollection
+    private List<String> images;
     private int deliveryTime;
     private double price;
-    private Product master;
+
+//    @ManyToOne
+//    private Product master;
+
     private int orderId;
 }

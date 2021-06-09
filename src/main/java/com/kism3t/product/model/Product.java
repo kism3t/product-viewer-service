@@ -1,10 +1,16 @@
 package com.kism3t.product.model;
 
+import lombok.Data;
+import lombok.Getter;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Product {
+@Data
+@Getter
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -16,30 +22,6 @@ public class Product {
     private String urlName;
     private String metaData;
 
-    @Transient
+    @OneToMany(targetEntity = VariantProduct.class)
     private List<VariantProduct> variantProducts;
-
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getOnlineId() {
-        return onlineId;
-    }
-
-    public String getPageTitle() {
-        return pageTitle;
-    }
-
-    public String getUrlName() {
-        return urlName;
-    }
-
-    public String getMetaData() {
-        return metaData;
-    }
 }
