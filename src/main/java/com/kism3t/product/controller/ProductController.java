@@ -5,9 +5,10 @@ import com.kism3t.product.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -19,29 +20,29 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = { "application/json", "application/xml" } )
+    @GetMapping(produces = { "application/json", "application/xml" })
     public ResponseEntity<Collection<Product>> getProducts() {
         Collection<Product> usersList = productService.getProducts();
-        return new ResponseEntity<>(usersList, HttpStatus.OK);
-    }
-/*
-    @GetMapping("/{heroId}")
-    public Hero getHero(@PathVariable int heroId) {
-        return heroService.getHeroById(heroId);
+        HttpStatus httpStatus = HttpStatus.OK;
+
+        if (usersList.isEmpty()) {
+            httpStatus = HttpStatus.NO_CONTENT;
+        }
+        return new ResponseEntity<>(usersList, httpStatus);
     }
 
-    @PutMapping()
-    public void updateHero(@RequestBody(required = true) Hero hero) {
-        heroService.updateHero(hero);
+    @GetMapping(path = "/{id}", produces = { "application/json" })
+    public ResponseEntity<Product> getProduct(@PathVariable Long id) {
+
+        Optional<Product> product = productService.getProduct(id);
+        return product.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping
-    public Hero createHero(@RequestBody(required = true) Hero hero) {
-        return heroService.createHero(hero);
-    }
+    @PostMapping(consumes = { "application/json" })
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
 
-    @DeleteMapping("/{heroId}")
-    private Hero deleteHero(@PathVariable int heroId){
-        return heroService.deleteHero(heroId);
-    }*/
+        Product createProduct = productService.createProduct(product);
+
+        return new ResponseEntity<Product>(createProduct, HttpStatus.OK);
+    }
 }

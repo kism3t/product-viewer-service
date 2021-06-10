@@ -22,6 +22,6 @@ public class Product implements Serializable {
     private String urlName;
     private String metaData;
 
-    @OneToMany(targetEntity = VariantProduct.class)
+    @OneToMany(targetEntity = VariantProduct.class, cascade = CascadeType.ALL)
     private List<VariantProduct> variantProducts;
 }

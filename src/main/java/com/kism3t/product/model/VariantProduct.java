@@ -23,13 +23,12 @@ public class VariantProduct implements Serializable {
 
     @ElementCollection
     private List<String> downloads;
+
     @ElementCollection
     private List<String> images;
+
     private int deliveryTime;
     private double price;
-
-//    @ManyToOne
-//    private Product master;
 
     private int orderId;
 }
